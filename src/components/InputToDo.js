@@ -30,17 +30,18 @@ class InputToDo extends React.Component{
 
     render(){
         return (
-            <form onSubmit={this.btnSubmitHandler}>
+            <form className="form-container" onSubmit={this.btnSubmitHandler}>
                 <input 
                     type="text" 
+                    className="input-text"
                     placeholder="Add Todo..." 
                     name="title"
                     value={this.state.title} 
                     onChange={this.inptChangeHandler}/>
-                <button> Submit </button>
+                <button className="input-submit"> Submit </button>
             </form>
         );
     }
 }
 
-export default InputToDo
+export default InputToDo;

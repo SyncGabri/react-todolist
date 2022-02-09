@@ -16,7 +16,7 @@ class ToDoContainer extends React.Component{
             },
             {
                 id: uuidv4(),
-                title: "Dev website and add componets",
+                title: "Dev website and add components",
                 completed: false
             },
             {
@@ -66,17 +66,18 @@ class ToDoContainer extends React.Component{
 
     render(){
         return(
-            <div>
-                <Header />
-                <InputToDo addItemEventHandler={this.handleAddItem}/>
-                <ToDoList 
-                    todos={this.state.todos} 
-                    changeEventHandler={this.handleChange} 
-                    delItemEventHandler={this.handleDelItem}/>
+            <div className="container">
+                <div className="inner">
+                    <Header />
+                    <InputToDo addItemEventHandler={this.handleAddItem}/>
+                    <ToDoList 
+                        todos={this.state.todos} 
+                        changeEventHandler={this.handleChange} 
+                        delItemEventHandler={this.handleDelItem}/>
+                </div>
             </div>
-            
         );
     };
 }
 
-export default ToDoContainer
+export default ToDoContainer;
