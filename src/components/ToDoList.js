@@ -11,7 +11,8 @@ class ToDoList extends React.Component{
                         key={todo.id}
                         todo={todo}
                         changeEventHandler={this.props.changeEventHandler}
-                        delItemEventHandler={this.props.delItemEventHandler} />
+                        delItemEventHandler={this.props.delItemEventHandler}
+                        updateItemEventHandler={this.props.updateItemEventHandler} />
                 ))}
             </ul>
         );

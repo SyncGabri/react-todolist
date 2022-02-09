@@ -8,23 +8,7 @@ import InputToDo from "./InputToDo";
 class ToDoContainer extends React.Component{
     
     state = {
-        todos: [
-            {
-                id: uuidv4(),
-                title: "Setup devEnv",
-                completed: true
-            },
-            {
-                id: uuidv4(),
-                title: "Dev website and add components",
-                completed: false
-            },
-            {
-                id: uuidv4(),
-                title: "Deploy to live server",
-                completed: false
-            }
-        ]
+        todos: []
     };
     
     handleChange = (idx) => { 
@@ -64,6 +48,33 @@ class ToDoContainer extends React.Component{
         });
     }
 
+    handleUpdateItem = (newTitle, idx) => {
+        this.setState({
+            todos: this.state.todos.map(todo => {
+                if(todo.id === idx)
+                    todo.title = newTitle;
+                
+                return todo;
+            })
+        });
+    }
+
+
+    componentDidMount(){
+        const tmp       = localStorage.getItem("todos");
+        const toLoad    = JSON.parse(tmp);
+        
+        if(toLoad)
+            this.setState({todos: toLoad});
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        if(prevState.todos !== this.state.todos){
+            const tmp = JSON.stringify(this.state.todos);
+            localStorage.setItem("todos", tmp);
+        }
+    }
+
     render(){
         return(
             <div className="container">
@@ -73,7 +84,9 @@ class ToDoContainer extends React.Component{
                     <ToDoList 
                         todos={this.state.todos} 
                         changeEventHandler={this.handleChange} 
-                        delItemEventHandler={this.handleDelItem}/>
+                        delItemEventHandler={this.handleDelItem}
+                        updateItemEventHandler={this.handleUpdateItem}
+                        />
                 </div>
             </div>
         );
